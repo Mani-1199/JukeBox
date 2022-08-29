@@ -1,0 +1,29 @@
+create database jukebox;
+use jukebox;
+create table Genre(genreid int primary key auto_increment, genre varchar(100));
+alter table Genre auto_increment=1000;
+insert into Genre(genre) values ("Melody");
+insert into Genre(genre) values ("PoP");
+select * from Genre;
+
+create table Artist(Artistid int primary key auto_increment, ArtistName varchar(100));
+alter table Artist auto_increment=2000;
+insert into Artist(ArtistName) values ("Imagine Dragons");
+insert into Artist(ArtistName) values ("ED Sheeran");
+select * from Artist;
+
+create table Song(Songid int primary key auto_increment, SongName varchar(200) not null, SongAlbum varchar(200) not null,genreid int,Artistid int,Duration varchar(100), foreign key(genreid) references Genre(genreid),foreign key(Artistid) references Artist(Artistid));
+insert into Song(SongName, SongAlbum) values ("Shape of You", "Divide");
+alter table Song auto_increment=3000;
+select * from Song;
+
+create table Celebrity(Celebrityid int primary key auto_increment, CelebrityName varchar(100));
+alter table Celebrity auto_increment=4000;
+insert into Celebrity(CelebrityName) values ("Dwayne Johnson");
+select * from Celebrity;
+
+create table Podcast(Podcastid int primary key auto_increment, PodCastName varchar(100) not null, PodCastReleaseDate date default(curdate()), Duration varchar(100) not null, Celebrityid int, foreign key(Celebrityid) references Celebrity(Celebrityid));
+alter table Podcast auto_increment=5000;
+insert into Podcast(PodCastName, Duration) values ("My Journey","30 Mins");
+select * from Podcast;
+
